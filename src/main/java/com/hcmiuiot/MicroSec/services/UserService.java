@@ -22,11 +22,10 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-        logger.info("[User] --> username: {}, password: {}", user.getUsername(), user.getPassword());
         if(user == null){
             throw new UsernameNotFoundException(username);
         }
-
+        logger.info("[User] --> username: {}, password: {}", user.getUsername(), user.getPassword());
         return new CustomerUserDetails(user);
     }
 }

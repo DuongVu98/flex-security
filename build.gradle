@@ -20,16 +20,25 @@ configurations {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.2.RELEASE'
-//	runtimeOnly 'com.h2database:h2', name: 'h2', version: '1.4.200'
+	[
+			'org.springframework.boot:spring-boot-starter-security',
+			'org.springframework.boot:spring-boot-starter-security',
+			'org.springframework.boot:spring-boot-starter-web',
+			'org.springframework.boot:spring-boot-starter-data-jpa'
+	].each {dep ->
+		implementation(dep){
+			exclude module: "spring-boot-starter-logging"
+			exclude module: "logback-classic"
+		}
+	}
 	compile group: 'com.h2database', name: 'h2', version: '1.4.200'
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test'){
+		exclude module: "spring-boot-starter-logging"
+		exclude module: "logback-classic"
 	}
+
 	testImplementation 'org.springframework.security:spring-security-test'
 	testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 	compileOnly 'org.projectlombok:lombok:1.18.10'
@@ -38,6 +47,9 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	testLogging {
+		exceptionFormat = 'full'
+	}
 }
 
 
