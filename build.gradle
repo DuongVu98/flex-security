@@ -49,6 +49,20 @@ test {
 	useJUnitPlatform()
 	testLogging {
 		exceptionFormat = 'full'
+		showStandardStreams  = true
+		events "standardOut", "started", "passed", "skipped", "failed"
+	}
+	beforeTest { descriptor ->
+		logger.lifecycle("Running test: " + descriptor)
+	}
+	afterSuite { desc, result ->
+		if (!desc.parent) {
+			println "\nTest result: ${result.resultType}"
+			println "Test summary: ${result.testCount} tests, " +
+					"${result.successfulTestCount} succeeded, " +
+					"${result.failedTestCount} failed, " +
+					"${result.skippedTestCount} skipped"
+		}
 	}
 }
 

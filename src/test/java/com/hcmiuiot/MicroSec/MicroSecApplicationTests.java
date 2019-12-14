@@ -3,13 +3,12 @@ package com.hcmiuiot.MicroSec;
 import com.hcmiuiot.MicroSec.models.User;
 import com.hcmiuiot.MicroSec.repositories.UserRepository;
 import org.junit.Assert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.Assertions.
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -23,6 +22,7 @@ class MicroSecApplicationTests {
 	UserRepository userRepository;
 
 	@Test
+	@DisplayName("Simple test")
 	void simpleTest() {
 		logger.info("this test should run");
 		boolean value = true;
@@ -30,12 +30,14 @@ class MicroSecApplicationTests {
 	}
 
 	@Test
+	@DisplayName("User repository with right username")
 	void userRepositoryTest(){
 		User user = userRepository.findByUsername("tony@gmail.com");
 		Assert.assertNotNull(user.getUsername());
 	}
 
 	@Test
+	@DisplayName("User repository with wrong username")
 	void userRepositoryWithWrongUsernameTest(){
 		User user = userRepository.findByUsername("blah@gmail.com");
 		Assert.assertNull(user);
