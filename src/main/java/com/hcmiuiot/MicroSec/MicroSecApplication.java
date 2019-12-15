@@ -28,6 +28,8 @@ public class MicroSecApplication implements CommandLineRunner {
 		userRepository.save(user);
 		User userToUpdate = userRepository.findByUsername("tony@gmail.com");
 		userRepository.updateUser(userToUpdate.getId(), "tony123@gmail.com");
+
+		logger.info(userRepository.testFunction());
 	}
 
 }

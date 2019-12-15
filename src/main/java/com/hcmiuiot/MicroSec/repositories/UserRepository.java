@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User, String>, CrudRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, String>, CrudRepository<User, String>, UserCommandRepository {
     User findByUsername(String username);
     List<User> findByUsernameLike(String usernameInput);
 

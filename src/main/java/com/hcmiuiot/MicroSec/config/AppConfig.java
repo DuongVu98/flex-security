@@ -15,7 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "com.hcmiuiot.MicroSec.repositories"
+        basePackages = "com.hcmiuiot.MicroSec.repositories",
+        repositoryImplementationPostfix = "Impl"
 )
 public class AppConfig {
 
@@ -49,11 +50,5 @@ public class AppConfig {
     @Primary
     public UserDetailsService getUserService() {
         return new UserService();
-    }
-
-    @Bean
-    @Primary
-    public UserCommandRepository getUserCommandRepository(){
-        return new UserCommandJpaRepository();
     }
 }
