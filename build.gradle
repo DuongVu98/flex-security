@@ -74,8 +74,13 @@ test {
 bootRun {
 	// Use Spring Boot DevTool only when we run Gradle bootRun task
 	classpath = sourceSets.main.runtimeClasspath + configurations.developmentOnly
+//	main = "com.hcmiuiot.MicroSec.MicroSecApplication"
 }
 
+bootJar {
+	archiveName "App.jar"
+	mainClassName = "com.hcmiuiot.MicroSec.MicroSecApplication"
+}
 jacoco {
 	toolVersion = "0.8.5"
 	reportsDir = file("build/reports/jacoco")

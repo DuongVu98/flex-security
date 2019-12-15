@@ -14,7 +14,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(
+        basePackages = "com.hcmiuiot.MicroSec.repositories"
+)
 public class AppConfig {
 
     @Bean

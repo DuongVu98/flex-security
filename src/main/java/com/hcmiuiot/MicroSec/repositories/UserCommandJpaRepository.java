@@ -11,11 +11,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional
 @NoArgsConstructor
 public class UserCommandJpaRepository implements UserCommandRepository{
 
-    @PersistenceContext
+    @Autowired
     private EntityManager entityManager;
 
     @Override
