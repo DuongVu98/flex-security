@@ -2,21 +2,26 @@ package com.hcmiuiot.MicroSec.config;
 
 import com.hcmiuiot.MicroSec.providers.UsernamePasswordAuthenticationCustomProvider;
 import com.hcmiuiot.MicroSec.providers.UsernamePasswordDataAuthenticationProvider;
-import com.hcmiuiot.MicroSec.repositories.UserCustomRepository;
-import com.hcmiuiot.MicroSec.repositories.UserFakeRepository;
-import com.hcmiuiot.MicroSec.repositories.UserRealRepository;
-import com.hcmiuiot.MicroSec.repositories.UserRepository;
+import com.hcmiuiot.MicroSec.repositories.*;
 import com.hcmiuiot.MicroSec.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
+@EnableJpaRepositories
 public class AppConfig {
+
+    @Bean
+    public Logger getLogger() {
+        Logger logger = LoggerFactory.getLogger(this.getClass());
+        return logger;
+    }
 
     @Bean(name = "non-data")
     public AuthenticationProvider authenticationProvider(){
@@ -45,8 +50,8 @@ public class AppConfig {
     }
 
     @Bean
-    public Logger getLogger() {
-        Logger logger = LoggerFactory.getLogger(this.getClass());
-        return logger;
+    @Primary
+    public UserCommandRepository getUserCommandRepository(){
+        return new UserCommandJpaRepository();
     }
 }

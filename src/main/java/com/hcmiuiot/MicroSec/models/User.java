@@ -1,16 +1,15 @@
 package com.hcmiuiot.MicroSec.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "user")
 public class User {
@@ -20,9 +19,11 @@ public class User {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
+    @NonNull
     @Column(name = "user_name")
     private String username;
 
+    @NonNull
     @Column(name = "password")
     private String password;
 }
