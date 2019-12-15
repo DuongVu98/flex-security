@@ -25,8 +25,9 @@ public class MicroSecApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		User user = new User("lee@gmail.com", "letuan98");
-		logger.info(userRepository.saveUser(user).toString());
-		logger.info(userRepository.testFunction());
+		userRepository.save(user);
+		User userToUpdate = userRepository.findByUsername("tony@gmail.com");
+		userRepository.updateUser(userToUpdate.getId(), "tony123@gmail.com");
 	}
 
 }
