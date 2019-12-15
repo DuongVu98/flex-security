@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.hcmiuiot'
@@ -52,6 +53,10 @@ test {
 		showStandardStreams  = true
 		events "standardOut", "started", "passed", "skipped", "failed"
 	}
+	jacoco {
+		destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+		classDumpDir = file("$buildDir/jacoco/classpathdumps")
+	}
 	beforeTest { descriptor ->
 		logger.lifecycle("Running test: " + descriptor)
 	}
@@ -66,8 +71,20 @@ test {
 	}
 }
 
-
 bootRun {
 	// Use Spring Boot DevTool only when we run Gradle bootRun task
 	classpath = sourceSets.main.runtimeClasspath + configurations.developmentOnly
+}
+
+jacoco {
+	toolVersion = "0.8.5"
+	reportsDir = file("build/reports/jacoco")
+}
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.enabled true
+		html.destination file("build/reports/jacocoHtml")
+	}
 }
