@@ -30,14 +30,7 @@ class MicroSecApplicationTests {
 	}
 
 	@Test
-	@DisplayName("User repository with right username")
-	void userRepositoryTest(){
-		User user = userRepository.findByUsername("tony@gmail.com");
-		Assert.assertNotNull(user.getUsername());
-	}
-
-	@Test
-	@DisplayName("User repository with wrong username")
+	@DisplayName("find user with wrong username")
 	void userRepositoryWithWrongUsernameTest(){
 		User user = userRepository.findByUsername("blah@gmail.com");
 		Assert.assertNull(user);

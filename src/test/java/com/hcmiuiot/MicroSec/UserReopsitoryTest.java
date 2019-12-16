@@ -20,12 +20,23 @@ public class UserReopsitoryTest {
 
     @Test
     @DirtiesContext
-    @DisplayName("User repository with right username")
-    void updateUsername(){
+    @DisplayName("after update 1")
+    void updateUsernameTest(){
         User user = userRepository.findByUsername("tom@gmail.com");
         userRepository.updateUser(user.getId(), "tom123@gmail.com");
 
-        User user1 = userRepository.findByUsername("tom123@gmailc.om");
-        Assert.assertNotNull(user);
+        User user1 = userRepository.findByUsername("tom123@gmail.com");
+        Assert.assertNotNull(user1);
+    }
+
+    @Test
+    @DirtiesContext
+    @DisplayName("after update 2")
+    void updateUsernameTest2(){
+        User user = userRepository.findByUsername("tom@gmail.com");
+        userRepository.updateUser(user.getId(), "tom123@gmail.com");
+
+        User user1 = userRepository.findByUsername("tom@gmail.com");
+        Assert.assertNull(user1);
     }
 }
