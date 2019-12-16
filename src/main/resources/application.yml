@@ -18,3 +18,11 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+  thymeleaf:
+    enabled: true
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .html
+  resources:
+    static-locations: classpath:/resources/

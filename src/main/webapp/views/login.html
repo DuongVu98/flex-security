@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <div th:insert="header.html"></div>
 </head>
 <body class="container">
 <div class="card">
     <div class="card-body">
-        <img th:src="@{/images/lock.jpg}" class="card-img-top" alt="...">
+        <img th:src="@{/resources/images/lock.jpg}" class="card-img-top" alt="...">
         <div class="card-title"><h3>Login to continue</h3></div>
         <p th:if="${param.error}"></p>
         <form th:action="@{/login}" method="POST">
